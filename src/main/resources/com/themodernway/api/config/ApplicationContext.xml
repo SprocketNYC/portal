@@ -98,10 +98,15 @@
 			</list>
 		</constructor-arg>
 	</bean>
+	
+	<bean class="com.themodernway.api.server.spring.PortalConfiguration"/>
 		
 	<context:component-scan base-package="com.themodernway.api.socket"/>
 	
 	<context:component-scan base-package="com.themodernway.api.services"/>
+	
+	<context:component-scan base-package="com.themodernway.api.server.rest"/>
+	
 	
 	<context:annotation-config/>
 		

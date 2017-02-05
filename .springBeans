@@ -8,6 +8,7 @@
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
 		<config>src/main/resources/com/themodernway/api/config/ApplicationContext.xml</config>
+		<config>java:com.themodernway.api.server.spring.PortalConfiguration</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
