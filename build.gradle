@@ -1,0 +1,145 @@
+/*
+ * Copyright (c) 2015,2016 The Modern Way. All rights reserved.
+ *
+ */
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(group: 'org.ajoberstar', name: 'grgit', version: '1.7.2')
+        classpath(group: 'commons-codec', name: 'commons-codec', version: '1.10')
+        classpath(group: 'commons-logging', name: 'commons-logging', version: '1.2')
+        classpath(group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2')
+    }
+}
+
+import org.apache.tools.ant.filters.FixCrLfFilter
+import org.apache.tools.ant.filters.ReplaceTokens
+import java.net.InetAddress
+import org.ajoberstar.grgit.Grgit
+
+apply plugin: 'war'
+apply plugin: 'maven'
+apply plugin: 'groovy'
+apply plugin: 'jacoco'
+apply plugin: 'signing'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.8
+
+targetCompatibility = 1.8
+
+version = '1.1.32'
+
+repositories {
+    mavenCentral()
+    maven { url "${sonatype_snapshotURL}" }
+}
+
+eclipse {
+    classpath {
+        downloadJavadoc = true
+    }
+}
+
+tasks.withType(GroovyCompile) {
+    groovyOptions.optimizationOptions.indy = true
+}
+
+task deleteConfigs(type: Delete) {
+    FileTree tree = fileTree (dir: 'build/resources/main/com/themodernway/api/config');
+    tree.each { File file ->
+        delete(file)
+    }
+}
+
+task filterConfigs(dependsOn: deleteConfigs, type: Copy) {
+    from 'src/main/resources/com/themodernway/api/config'
+    into 'build/resources/main/com/themodernway/api/config'
+    filter(FixCrLfFilter)
+    filter(ReplaceTokens, tokens: getFilterTokens())
+}
+
+def getFilterTokens() {
+    [GRADLE_BUILD_ARTIFACT_ID: getProjectArtifactID(), GRADLE_BUILD_PROJECT_TITLE: getProjectTitle(), GRADLE_BUILD_USER: getBuildUser(), GRADLE_BUILD_DATE: getBuildDate(), GRADLE_JAVA_VERSION: getJavaVersion(), GRADLE_GIT_COMMIT_HASH: getBuildGITCommitHash(), GRADLE_GIT_COMMIT_USER: getBuildGITCommitUser(), GRADLE_GIT_COMMIT_MESSAGE: getBuildGITCommitMessage(), GRADLE_BUILD_SERVER_HOST: getBuildServerHost(), GRADLE_BUILD_SERVER_BUILD: getBuildServerBuild(), GRADLE_BUILD_MODULE_VERSION: getBuildModuleVersion()]
+}
+
+def getProjectArtifactID() {
+    'themodernway-api'
+}
+
+def getProjectTitle() {
+    'The-Modern-Way-API'
+}
+
+def getBuildModuleVersion() {
+    version
+}
+
+def getBuildDate() {
+    (new Date()).toString()
+}
+
+def getBuildServerHost() {
+    try
+    {
+        InetAddress.getLocalHost().getHostName()
+    }
+    catch (Exception e)
+    {
+        'localhost'
+    }
+}
+
+def getJavaVersion() {
+    System.getProperty('java.version') ?: 'unknown'
+}
+
+def getBuildUser() {
+    System.getProperty('user.name') ?: 'unknown'
+}
+
+def getBuildServerBuild() {
+    System.getenv('BUILD_DISPLAY_NAME') ?: 'Command line ' + GradleVersion.current().toString()
+}
+
+def getBuildGITCommitHash() {
+    ''//'https://github.com/SprocketNYC/themodernway-api/commits/' + Grgit.open(project.file('.')).head().id
+}
+
+def getBuildGITCommitUser() {
+    ''//Grgit.open(project.file('.')).head().committer.email
+}
+
+def getBuildGITCommitMessage() {
+    ''//Grgit.open(project.file('.')).head().shortMessage
+}
+
+configurations {
+    compile.exclude(group: 'org.slf4j', module: 'log4j-over-slf4j')
+    runtime.exclude(group: 'org.slf4j', module: 'log4j-over-slf4j')
+}
+
+dependencies {
+    compile(group: 'com.ahome-it', name: 'ahome-tooling-server-sql', version: '1.1.32-RELEASE')
+    compile(group: 'com.ahome-it', name: 'ahome-tooling-server-rest', version: '1.1.32-RELEASE')
+    compile(group: 'com.ahome-it', name: 'ahome-tooling-server-mongodb', version: '1.1.32-RELEASE')
+    compile(group: 'org.postgresql', name: 'postgresql', version: '9.4.1212.jre7')
+    compile(group: 'javax.websocket', name: 'javax.websocket-api', version: '1.1')
+    providedCompile(group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0')
+}
+
+
+war.dependsOn(filterConfigs)
+
+war {
+    manifest {
+        attributes 'Implementation-Title': getProjectTitle(), 'Implementation-Version': getBuildModuleVersion()
+    }
+    from('war') {
+        exclude 'WEB-INF/classes/**'
+    }
+    archiveName 'api.war'
+}

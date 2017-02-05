@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+/*
+ * Copyright (c) 2015,2016 The Modern Way. All rights reserved.
+ *
+ */
+ -->
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d] [%p] [%c] [%X{session}] [@GRADLE_BUILD_MODULE_VERSION@] - %m%n"/>
+		</layout>
+	</appender>
+	<appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+		<param name="BufferSize" value="500"/>
+		<param name="LocationInfo" value="true"/>
+		<appender-ref ref="STDOUT"/>
+	</appender>
+	<root>
+		<level value="INFO"/>
+		<appender-ref ref="ASYNC"/>
+	</root>
+</log4j:configuration>
