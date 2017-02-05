@@ -106,15 +106,15 @@ def getBuildServerBuild() {
 }
 
 def getBuildGITCommitHash() {
-    ''//'https://github.com/SprocketNYC/themodernway-api/commits/' + Grgit.open(project.file('.')).head().id
+    'https://github.com/SprocketNYC/themodernway-api/commits/' + Grgit.open(project.file('.')).head().id
 }
 
 def getBuildGITCommitUser() {
-    ''//Grgit.open(project.file('.')).head().committer.email
+    Grgit.open(project.file('.')).head().committer.email
 }
 
 def getBuildGITCommitMessage() {
-    ''//Grgit.open(project.file('.')).head().shortMessage
+    Grgit.open(project.file('.')).head().shortMessage
 }
 
 configurations {
