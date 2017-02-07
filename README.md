@@ -1,2 +1,2 @@
-The Modern Way API
+Portal AngularJS quick test
 ======
