@@ -9,7 +9,7 @@ Currently, npm needs to be installed and on your PATH.
 
 `npm install` or `gradle npmInstall`
 
-A [Gradle plugin](https://github.com/craigburke/client-dependencies-gradle) can be used instead of npm once an [issue](https://github.com/craigburke/client-dependencies-gradle/issues/72) with downloading [type definitions]("https://www.npmjs.com/~types") is fixed.
+A [Gradle plugin](https://github.com/craigburke/client-dependencies-gradle) can be used instead of npm once an [issue](https://github.com/craigburke/client-dependencies-gradle/issues/72) with downloading [type definitions](https://www.npmjs.com/~types) is fixed.
 
 Downloading regular client packages to `node_modules` at the root of the project also helps with syntax highlighting in some IDEs. 
 
@@ -27,5 +27,5 @@ Dependency resolution in the browser is handled via [SystemJS](https://github.co
 
 ###Package for Deployment
 
-```grade war``` to download dependencies, compile TypeScript and package.
+```gradle war``` to download dependencies, compile TypeScript and package.
 
