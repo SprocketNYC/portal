@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "allowJs": false,
+    "module": "system",
+    "target": "es5",
+    "sourceMap": true,
+    "typeRoots": ["node_modules/@types"],
+    "outFile": "war/assets/js/portal-all-compiled.js"
+  },
+  "include": [
+    "war/assets/ts/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

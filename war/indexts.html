@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Prometheus AngularJS Demo</title>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.20.5/system.js"></script>
+<script src="assets/js/portal-all-compiled.js"></script>
+<script src="config.js"></script>
+<link rel="stylesheet" href="assets/css/w3c.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<body>
+<div ng-app="portal" ng-cloak ng-controller="demoController as demo" class="w3-card-2 w3-margin">
+  <header class="w3-container w3-light-grey w3-padding-16">
+    <h3>REST Tests - {{demo.tstatus}}</h3>
+  </header>
+  <div class="DemoResultsBox" id="DemoResultsBox">
+  	<pre>{{demo.results}}</pre>
+  </div>
+  <div class="w3-container w3-light-grey w3-padding-16">
+    <div class="w3-row w3-margin-top">
+		<button ng-click="demo.doServiceGET('/demo/users/increment')" ng-disabled="demo.working" class="w3-btn w3-padding w3-blue">Increment</button>
+        <button ng-click="demo.doServiceGET('/demo/users/decrement')" ng-disabled="demo.working" class="w3-btn w3-padding w3-blue">Decrement</button>
+        <button ng-click="demo.doServiceGET('/demo/build/descriptors')" ng-disabled="demo.working" class="w3-btn w3-padding w3-blue">Descriptors</button>
+        <button ng-click="demo.doServiceGET('/demo/users/findusers')" ng-disabled="demo.working" class="w3-btn w3-padding w3-blue">SQL Users</button>
+        <button ng-click="demo.doServiceGET('/demo/notfound')" ng-disabled="demo.working" class="w3-btn w3-padding w3-red">Not Found</button>
+        <button ng-click="demo.doServiceGET('/demo/admin_only')" ng-disabled="demo.working" class="w3-btn w3-padding w3-red">Permissions</button>
+        <button ng-click="demo.doServiceGET('/demo/always_throw')" ng-disabled="demo.working" class="w3-btn w3-padding w3-red">Error</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

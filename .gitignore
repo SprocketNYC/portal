@@ -1,3 +1,5 @@
 /war/WEB-INF/classes
 /build/
 /.gradle/
+/node_modules/
+portal-all-compiled.*

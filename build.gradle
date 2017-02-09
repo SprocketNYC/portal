@@ -131,8 +131,17 @@ dependencies {
     providedCompile(group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0')
 }
 
+task npmInstall(type: Exec) {
+    executable 'npm'
+    args = ['install']
+}
 
-war.dependsOn(filterConfigs)
+task tsCompile(type: Exec, dependsOn: npmInstall) {
+    workingDir 'node_modules/typescript/bin'
+    executable 'tsc'
+}
+
+war.dependsOn(filterConfigs, tsCompile)
 
 war {
     manifest {

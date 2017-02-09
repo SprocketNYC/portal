@@ -52,7 +52,7 @@
     <url-pattern>/Services.rpc</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>indexts.html</welcome-file>
   </welcome-file-list>
   <absolute-ordering/>
 </web-app>

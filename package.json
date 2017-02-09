@@ -1,0 +1,23 @@
+{
+  "name": "portal",
+  "version": "1.0.0",
+  "description": "Portal",
+  "private": true,
+  "main": "war/assets/js/portal-compiled.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SprocketNYC/portal.git"
+  },
+  "author": "deansjones",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/SprocketNYC/portal#readme",
+  "devDependencies": {
+    "@types/angular": "^1.6.5",
+    "angular": "^1.6.2",
+    "systemjs": "^0.20.5",
+    "typescript": "^2.1.6"
+  }
+}
