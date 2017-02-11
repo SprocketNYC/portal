@@ -99,6 +99,11 @@
 		</constructor-arg>
 	</bean>
 	
+	<bean id="SpringDispatcherServletContextCustomizer" class="com.ait.tooling.server.core.support.spring.SpringDispatcherServletContextCustomizer">
+		<constructor-arg value="SpringDispatcherServletContextCustomizer" />
+		<constructor-arg value="/rest/*" />
+	</bean>
+			
 	<bean class="com.themodernway.api.server.spring.PortalConfiguration"/>
 		
 	<context:component-scan base-package="com.themodernway.api.socket"/>
@@ -106,7 +111,6 @@
 	<context:component-scan base-package="com.themodernway.api.services"/>
 	
 	<context:component-scan base-package="com.themodernway.api.server.rest"/>
-	
 	
 	<context:annotation-config/>
 		
