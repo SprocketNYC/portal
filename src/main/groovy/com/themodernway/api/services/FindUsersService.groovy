@@ -19,9 +19,12 @@ package com.themodernway.api.services
 import org.springframework.http.HttpMethod
 import org.springframework.stereotype.Service
 
-import com.ait.tooling.server.core.json.JSONObject
-import com.ait.tooling.server.rest.*
-import com.ait.tooling.server.sql.support.GSQLTrait
+import com.themodernway.server.core.json.JSONObject
+import com.themodernway.server.rest.IRESTRequestContext
+import com.themodernway.server.rest.RESTServiceSupport
+import com.themodernway.server.rest.RequestBinding
+import com.themodernway.server.rest.RequestMethod
+import com.themodernway.server.sql.support.GSQLTrait
 
 import groovy.transform.CompileStatic
 

@@ -27,7 +27,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import com.ait.tooling.server.core.support.spring.network.websocket.AbstractWebSocketEndPointByPathPart;
+import com.themodernway.server.core.support.spring.network.websocket.AbstractWebSocketEndPointByPathPart;
 
 @ServerEndpoint("/sockets/endpoints/{name}")
 public final class APIWebSocketByName extends AbstractWebSocketEndPointByPathPart

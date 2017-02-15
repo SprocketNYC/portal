@@ -18,8 +18,9 @@ package com.themodernway.api.socket
 
 import org.springframework.stereotype.Service
 
-import com.ait.tooling.server.core.json.JSONObject
-import com.ait.tooling.server.core.support.spring.network.websocket.*
+import com.themodernway.server.core.json.JSONObject
+import com.themodernway.server.core.support.spring.network.websocket.IWebSocketServiceContext
+import com.themodernway.server.core.support.spring.network.websocket.JSONWebSocketServiceSupport
 
 import groovy.transform.CompileStatic
 

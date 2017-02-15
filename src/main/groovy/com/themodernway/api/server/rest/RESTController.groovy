@@ -20,9 +20,8 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ResponseBody
 
-import com.ait.tooling.server.core.json.JSONObject
-import com.ait.tooling.server.core.support.CoreGroovyTrait
-import com.ait.tooling.server.mongodb.support.MongoDBTrait
+import com.themodernway.server.core.support.CoreGroovyTrait
+import com.themodernway.server.mongodb.support.MongoDBTrait
 
 import groovy.transform.CompileStatic
 

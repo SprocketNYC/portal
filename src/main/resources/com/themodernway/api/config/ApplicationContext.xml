@@ -38,13 +38,13 @@
 						http://www.springframework.org/schema/rabbit
 						http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
 
-	<bean id="BootstrapStringCryptoProvider" class="com.ait.tooling.server.core.security.BootstrapStringCryptoProvider">
+	<bean id="BootstrapStringCryptoProvider" class="com.themodernway.server.core.security.BootstrapStringCryptoProvider">
 		<constructor-arg>
 			<value>file:/opt/development/properties/api/crypto.properties</value>
 		</constructor-arg>
 	</bean>
 
-	<bean id="PropertiesProvider" class="com.ait.tooling.server.core.support.spring.CoreEncryptedPropertiesProviderPlaceholderConfigurer">
+	<bean id="PropertiesProvider" class="com.themodernway.server.core.support.spring.CoreEncryptedPropertiesProviderPlaceholderConfigurer">
 		<constructor-arg ref="BootstrapStringCryptoProvider"/>
 		<constructor-arg value="0xCAFEBABE;"/>
 		<property name="locations">
@@ -55,7 +55,7 @@
 		<property name="loggingLevelAsString" value="INFO"/>
 	</bean>
 
-	<bean id="TheModernWayAPIBuildDescriptor" class="com.ait.tooling.server.core.support.spring.BuildDescriptor">
+	<bean id="TheModernWayAPIBuildDescriptor" class="com.themodernway.server.core.support.spring.BuildDescriptor">
 		<constructor-arg value="@GRADLE_BUILD_PROJECT_TITLE@"/>
 		<property name="buildUser">
 			<value><![CDATA[@GRADLE_BUILD_USER@]]></value>
@@ -74,7 +74,7 @@
 		<property name="buildModuleVersion" value="@GRADLE_BUILD_ARTIFACT_ID@-@GRADLE_BUILD_MODULE_VERSION@.war"/>
 	</bean>
 	
-	<bean id="API_MongoDB" class="com.ait.tooling.server.mongodb.support.spring.MongoDBDescriptor" destroy-method="close"/>
+	<bean id="API_MongoDB" class="com.themodernway.server.mongodb.support.spring.MongoDBDescriptor" destroy-method="close"/>
 	
 	<bean id="API_HikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="poolName" value="API_SpringHikariCP" />
@@ -96,21 +96,21 @@
 		<constructor-arg ref="API_HikariConfig" />
 	</bean>
 	
-	<bean id="API_SQLDescriptor" class="com.ait.tooling.server.sql.support.spring.GSQLDescriptor" destroy-method="close">
+	<bean id="API_SQLDescriptor" class="com.themodernway.server.sql.support.spring.GSQLDescriptor" destroy-method="close">
 		<constructor-arg ref="API_SQLPooledDS" />
     	<property name="description" value="API PostgreSQL DataBase" />
     </bean>
 	
-	<bean id="ScriptingProvider" class="com.ait.tooling.server.core.scripting.ScriptingProvider" destroy-method="close">
+	<bean id="ScriptingProvider" class="com.themodernway.server.core.scripting.ScriptingProvider" destroy-method="close">
 		<constructor-arg>
 			<list>
-				<bean class="com.ait.tooling.server.core.scripting.GroovyScriptingProperties"/>
-				<bean class="com.ait.tooling.server.core.scripting.JavaScriptScriptingProperties"/>
+				<bean class="com.themodernway.server.core.scripting.GroovyScriptingProperties"/>
+				<bean class="com.themodernway.server.core.scripting.JavaScriptScriptingProperties"/>
 			</list>
 		</constructor-arg>
 	</bean>
 	
-	<bean id="SpringDispatcherServletContextCustomizer" class="com.ait.tooling.server.core.support.spring.SpringDispatcherServletContextCustomizer">
+	<bean id="SpringDispatcherServletContextCustomizer" class="com.themodernway.server.core.support.spring.SpringDispatcherServletContextCustomizer">
 		<constructor-arg value="SpringDispatcherServlet" />
 		<constructor-arg value="/rest/*" />
 	</bean>

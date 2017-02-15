@@ -30,29 +30,29 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>
 			classpath:/com/themodernway/api/config/ApplicationContext.xml
-			classpath:/com/ait/tooling/server/sql/config/SQLApplicationContext.xml
-			classpath:/com/ait/tooling/server/mongodb/config/MongoDBApplicationContext.xml
-			classpath:/com/ait/tooling/server/rest/config/RESTApplicationContext.xml
-			classpath:/com/ait/tooling/server/core/config/CoreApplicationContext.xml
+			classpath:/com/themodernway/server/sql/config/SQLApplicationContext.xml
+			classpath:/com/themodernway/server/mongodb/config/MongoDBApplicationContext.xml
+			classpath:/com/themodernway/server/rest/config/RESTApplicationContext.xml
+			classpath:/com/themodernway/server/core/config/CoreApplicationContext.xml
 		</param-value>
   </context-param>
   <listener>
     <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
   </listener>
   <listener>
-    <listener-class>com.ait.tooling.server.core.support.spring.CoreWebContextLoaderListener</listener-class>
+    <listener-class>com.themodernway.server.core.support.spring.CoreWebContextLoaderListener</listener-class>
   </listener>
   <filter>
     <filter-name>CacheControlFilter</filter-name>
-    <filter-class>com.ait.tooling.server.core.servlet.filter.CacheControlFilter</filter-class>
+    <filter-class>com.themodernway.server.core.servlet.filter.CacheControlFilter</filter-class>
   </filter>
   <servlet>
     <servlet-name>RESTServlet</servlet-name>
-    <servlet-class>com.ait.tooling.server.rest.servlet.RESTServlet</servlet-class>
+    <servlet-class>com.themodernway.server.rest.servlet.RESTServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>RESTCommandServlet</servlet-name>
-    <servlet-class>com.ait.tooling.server.rest.servlet.RESTCommandServlet</servlet-class>
+    <servlet-class>com.themodernway.server.rest.servlet.RESTCommandServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RESTServlet</servlet-name>
