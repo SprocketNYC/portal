@@ -16,6 +16,8 @@
 
 package com.themodernway.api.server.rest
 
+import static com.themodernway.common.api.java.util.IHTTPConstants.*
+
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ResponseBody
@@ -29,7 +31,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class RESTController implements CoreGroovyTrait, MongoDBTrait
 {
-    @GetMapping('/user')
+    @GetMapping(path = '/user', produces = CONTENT_TYPE_APPLICATION_JSON)
     @ResponseBody
     def user()
     {
