@@ -1,6 +1,17 @@
 /*
- * Copyright (c) 2015,2016 The Modern Way. All rights reserved.
+ * Copyright (c) 2017, The Modern Way. All rights reserved.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package com.themodernway.api.services
@@ -8,9 +19,12 @@ package com.themodernway.api.services
 import org.springframework.http.HttpMethod
 import org.springframework.stereotype.Service
 
-import com.ait.tooling.server.core.json.JSONObject
-import com.ait.tooling.server.rest.*
-import com.ait.tooling.server.sql.support.GSQLTrait
+import com.themodernway.server.core.json.JSONObject
+import com.themodernway.server.rest.IRESTRequestContext
+import com.themodernway.server.rest.RESTServiceSupport
+import com.themodernway.server.rest.RequestBinding
+import com.themodernway.server.rest.RequestMethod
+import com.themodernway.server.sql.support.GSQLTrait
 
 import groovy.transform.CompileStatic
 
@@ -23,6 +37,6 @@ public class FindUsersService extends RESTServiceSupport implements GSQLTrait
     @Override
     public JSONObject execute(final IRESTRequestContext context, final JSONObject object) throws Exception
     {
-        jsql("select * from users")
+        jsql('select * from users')
     }
 }
