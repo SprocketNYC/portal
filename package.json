@@ -15,9 +15,9 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/SprocketNYC/portal#readme",
   "devDependencies": {
-    "@types/angular": "^1.6.5",
+    "@types/angular": "^1.6.7",
     "angular": "^1.6.2",
-    "systemjs": "^0.20.5",
-    "typescript": "^2.1.6"
+    "systemjs": "^0.20.9",
+    "typescript": "^2.2.1"
   }
 }

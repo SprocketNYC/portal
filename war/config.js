@@ -3,7 +3,7 @@ System.config({
         'googleapis:': 'https://ajax.googleapis.com/ajax/libs/'
     },
     map: {
-        'angular': 'googleapis:angularjs/1.6.1/angular.min.js'
+        'angular': 'googleapis:angularjs/1.6.2/angular.min.js'
     },
     meta: {
         'angular': { format: 'global' }
