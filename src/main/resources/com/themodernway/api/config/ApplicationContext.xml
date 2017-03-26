@@ -110,9 +110,25 @@
 		</constructor-arg>
 	</bean>
 	
-	<bean id="SpringDispatcherServletContextCustomizer" class="com.themodernway.server.core.support.spring.SpringDispatcherServletContextCustomizer">
-		<constructor-arg value="SpringDispatcherServlet" />
+	<bean id="SpringDispatcherServletContextCustomizerRest" class="com.themodernway.server.core.support.spring.SpringDispatcherServletContextCustomizer">
+		<constructor-arg value="SpringDispatcherServletRest" />
 		<constructor-arg value="/rest/*" />
+	</bean>
+	
+	<bean id="RESTServletContextCustomizer" class="com.themodernway.server.rest.support.spring.RESTServletContextCustomizer">
+		<constructor-arg value="RESTServlet" />
+		<constructor-arg value="/services/*" />
+	</bean>
+	
+	<bean id="ContentGetServletContextCustomizer" class="com.themodernway.server.core.support.spring.ContentGetServletContextCustomizer">
+		<constructor-arg value="ContentGetServlet" />
+		<constructor-arg value="/content/*" />
+		<property name="fileItemStorageName" value="content" />
+	</bean>
+	
+	<bean id="ContentSimpleFileItemStorage" class="com.themodernway.server.core.file.vfs.SimpleFileItemStorage">
+		<constructor-arg value="content" />
+		<constructor-arg value="/content" />
 	</bean>
 			
 	<bean class="com.themodernway.api.server.spring.PortalConfiguration"/>
