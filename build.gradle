@@ -138,7 +138,6 @@ dependencies {
     compile(group: 'com.themodernway', name: 'themodernway-server-rest', version: '1.0.4-RELEASE')
     compile(group: 'com.themodernway', name: 'themodernway-server-mongodb', version: '1.0.4-RELEASE')
     compile(group: 'org.postgresql', name: 'postgresql', version: '42.0.0')
-    compile(group: 'javax.websocket', name: 'javax.websocket-api', version: '1.1')
     providedCompile(group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0')
 }
 
@@ -152,5 +151,5 @@ war {
     from('war') {
         exclude 'WEB-INF/classes/**'
     }
-    archiveName 'api.war'
+    archiveName 'portal.war'
 }
