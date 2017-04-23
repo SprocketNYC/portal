@@ -35,7 +35,7 @@ import groovy.transform.CompileStatic
 class IncrementUser extends RESTServiceSupport implements MongoDBTrait
 {
     @Override
-    public JSONObject execute(final IRESTRequestContext context, final JSONObject object) throws Exception
+    def call(final IRESTRequestContext context, final JSONObject object) throws Exception
     {
         collection('users').upsert(QUERY(name: 'dean'), INC(count: 1L))
         

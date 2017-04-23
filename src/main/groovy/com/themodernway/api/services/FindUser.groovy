@@ -35,7 +35,7 @@ import groovy.transform.CompileStatic
 class FindUser extends RESTServiceSupport implements MongoDBTrait
 {
     @Override
-    public JSONObject execute(final IRESTRequestContext context, final JSONObject object) throws Exception
+    def call(final IRESTRequestContext context, final JSONObject object) throws Exception
     {
         json(collection('users').findOne(QUERY(name: 'dean')))
     }

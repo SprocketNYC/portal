@@ -35,7 +35,7 @@ import groovy.transform.CompileStatic
 public class FindUsersService extends RESTServiceSupport implements GSQLTrait
 {
     @Override
-    public JSONObject execute(final IRESTRequestContext context, final JSONObject object) throws Exception
+    def call(final IRESTRequestContext context, final JSONObject object) throws Exception
     {
         jsql('select * from users')
     }

@@ -36,7 +36,7 @@ import groovy.transform.Memoized
 class GetBuildDescriptors extends RESTServiceSupport
 {
     @Override
-    public JSONObject execute(final IRESTRequestContext context, final JSONObject object) throws Exception
+    def call(final IRESTRequestContext context, final JSONObject object) throws Exception
     {
         getBuildDescriptors()
     }

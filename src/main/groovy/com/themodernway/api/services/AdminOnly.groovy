@@ -36,7 +36,7 @@ import groovy.transform.CompileStatic
 class AdminOnly extends RESTServiceSupport
 {
     @Override
-    public JSONObject execute(final IRESTRequestContext context, final JSONObject object) throws Exception
+    def call(final IRESTRequestContext context, final JSONObject object) throws Exception
     {        
         json(status: 'ok')
     }
