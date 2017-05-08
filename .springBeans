@@ -8,6 +8,7 @@
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
 		<config>src/main/resources/com/themodernway/api/config/ApplicationContext.xml</config>
+		<config>src/main/resources/com/themodernway/api/config/HazelcastApplicationContext.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

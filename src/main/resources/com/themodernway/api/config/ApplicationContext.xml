@@ -50,6 +50,7 @@
 		<property name="locations">
 			<list>
 				<value>file:/opt/development/properties/api/webapp.properties</value>
+				<value>file:/opt/development/properties/api/hazelc.properties</value>
 			</list>
 		</property>
 		<property name="loggingLevelAsString" value="INFO"/>
@@ -123,6 +124,7 @@
 	<bean id="ContentGetServletContextCustomizer" class="com.themodernway.server.core.support.spring.ContentGetServletContextCustomizer">
 		<constructor-arg value="ContentGetServlet" />
 		<constructor-arg value="/content/*" />
+		<property name="cacheDelta" value="60000" />
 		<property name="fileItemStorageName" value="content" />
 	</bean>
 	
@@ -130,9 +132,20 @@
 		<constructor-arg value="content" />
 		<constructor-arg value="/content" />
 	</bean>
-		
-	<context:component-scan base-package="com.themodernway.api.socket"/>
 	
+	<bean id="HeaderInjectorFilterContextCustomizer" class="com.themodernway.server.core.support.spring.HeaderInjectorFilterContextCustomizer">
+		<constructor-arg value="ContentGetFilter" />
+		<constructor-arg value="/content/*" />
+		<constructor-arg>
+			<list>
+				<bean class="com.themodernway.server.core.servlet.filter.StrictTransportHeaderInjector"/>
+				<bean class="com.themodernway.server.core.servlet.filter.XContentTypeProtectionHeaderInjector"/>
+				<bean class="com.themodernway.server.core.servlet.filter.XFrameOptionsHeaderInjector"/>
+				<bean class="com.themodernway.server.core.servlet.filter.XSSProtectionHeaderInjector"/>
+			</list>
+		</constructor-arg>
+	</bean>
+			
 	<context:component-scan base-package="com.themodernway.api.services"/>
 	
 	<context:component-scan base-package="com.themodernway.api.server.rest"/>
