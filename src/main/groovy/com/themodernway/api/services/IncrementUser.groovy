@@ -37,8 +37,10 @@ class IncrementUser extends RESTServiceSupport implements MongoDBTrait
     @Override
     def call(final IRESTRequestContext context, final JSONObject object) throws Exception
     {
+        logger().info("" + context.getServletResponse().getStatus())
+
         collection('users').upsert(QUERY(name: 'dean'), INC(count: 1L))
-        
+
         json(collection('users').findOne(QUERY(name: 'dean')))
     }
 }
