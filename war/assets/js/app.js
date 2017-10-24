@@ -7,26 +7,37 @@ app.controller("demoController", function($scope, $http) {
 		if ((performance) && (performance.now)) {
 			return performance.now();
 		}
-		;
 		if (!Date.now) {
 			return new Date().getTime();
 		}
 		return Date.now();
 	};
+	$scope.putJSON = function(data) {
+		var json = JSON.stringify(data);
+		sessionStorage.setItem('json', json);
+		return data;
+	};
+	$scope.getJSON = function() {
+		var json = sessionStorage.getItem('json');
+		return JSON.parse(json);
+	};
 	$scope.statusREADY = function(path, response) {
 		var dt = ($scope.timestamp() - $scope.tstarts);
-		$scope.tstatus = "[READY] " + path + " " + dt.toFixed(2) + ".ms";
-		$scope.results = JSON.stringify(response.data, null, 2);
+		$scope.tstatus = "[READY] " + path + " " + dt.toFixed(3) + ".ms";
+		$scope.results = JSON.stringify($scope.putJSON(response.data), null, 2);
 		$scope.working = false;
 	};
 	$scope.statusERROR = function(path, response) {
 		var dt = ($scope.timestamp() - $scope.tstarts);
-		$scope.tstatus = "[ERROR] " + path + " " + dt.toFixed(2) + ".ms";
+		$scope.tstatus = "[ERROR] " + path + " " + dt.toFixed(3) + ".ms";
+		var text = "";
 		if (response.status < 0) {
-			$scope.results = " NO NETWORK";
+			text = "NO NETWORK";
 		} else {
-			$scope.results = " CODE[" + response.status + "]: " + response.statusText;
+			text = "CODE[" + response.status + "][" + response.statusText + "]";
 		}
+		$scope.results = " " + text;
+		$scope.putJSON({oops: text});
 		$scope.working = false;
 	};
 	$scope.doServiceGET = function(path) {
@@ -40,12 +51,12 @@ app.controller("demoController", function($scope, $http) {
 			$scope.statusERROR(path, response);
 		});
 	};
-	$scope.doServicePOST = function(path, data) {
+	$scope.doServicePOST = function(path) {
 		$scope.working = true;
 		$scope.tstatus = "[WAITING]";
 		$scope.results = "";
 		$scope.tstarts = $scope.timestamp();
-		$http.post("services" + path, data).then(function(response) {
+		$http.post("services" + path, $scope.getJSON()).then(function(response) {
 			$scope.statusREADY(path, response);
 		}, function(response) {
 			$scope.statusERROR(path, response);
