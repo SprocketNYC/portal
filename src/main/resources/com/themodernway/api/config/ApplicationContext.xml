@@ -45,37 +45,37 @@
 	</bean>
 
 	<bean id="PropertiesProvider" class="com.themodernway.server.core.support.spring.CoreEncryptedPropertiesProviderPlaceholderConfigurer">
-		<constructor-arg ref="BootstrapStringCryptoProvider"/>
-		<constructor-arg value="0xCAFEBABE;"/>
+		<constructor-arg ref="BootstrapStringCryptoProvider" />
+		<constructor-arg value="0xCAFEBABE;" />
 		<property name="locations">
 			<list>
 				<value>file:/opt/development/properties/api/webapp.properties</value>
 				<value>file:/opt/development/properties/api/hazelc.properties</value>
 			</list>
 		</property>
-		<property name="loggingLevelAsString" value="INFO"/>
+		<property name="loggingLevelAsString" value="INFO" />
 	</bean>
 
 	<bean id="TheModernWayAPIBuildDescriptor" class="com.themodernway.server.core.support.spring.BuildDescriptor">
-		<constructor-arg value="@GRADLE_BUILD_PROJECT_TITLE@"/>
+		<constructor-arg value="@GRADLE_BUILD_PROJECT_TITLE@" />
 		<property name="buildUser">
 			<value><![CDATA[@GRADLE_BUILD_USER@]]></value>
 		</property>
-		<property name="buildDate" value="@GRADLE_BUILD_DATE@"/>
-		<property name="javaVersion" value="@GRADLE_JAVA_VERSION@"/>
-		<property name="buildGITCommitHash" value="@GRADLE_GIT_COMMIT_HASH@"/>
+		<property name="buildDate" value="@GRADLE_BUILD_DATE@" />
+		<property name="javaVersion" value="@GRADLE_JAVA_VERSION@" />
+		<property name="buildGITCommitHash" value="@GRADLE_GIT_COMMIT_HASH@" />
 		<property name="buildGITCommitUser">
 			<value><![CDATA[@GRADLE_GIT_COMMIT_USER@]]></value>
 		</property>
 		<property name="buildGITCommitMessage">
 			<value><![CDATA[@GRADLE_GIT_COMMIT_MESSAGE@]]></value>
 		</property>
-		<property name="buildServerHost" value="@GRADLE_BUILD_SERVER_HOST@"/>
-		<property name="buildServerBuild" value="@GRADLE_BUILD_SERVER_BUILD@"/>
-		<property name="buildModuleVersion" value="@GRADLE_BUILD_ARTIFACT_ID@-@GRADLE_BUILD_MODULE_VERSION@.war"/>
+		<property name="buildServerHost" value="@GRADLE_BUILD_SERVER_HOST@" />
+		<property name="buildServerBuild" value="@GRADLE_BUILD_SERVER_BUILD@" />
+		<property name="buildModuleVersion" value="@GRADLE_BUILD_ARTIFACT_ID@-@GRADLE_BUILD_MODULE_VERSION@.war" />
 	</bean>
 	
-	<bean id="API_MongoDB" class="com.themodernway.server.mongodb.support.spring.MongoDBDescriptor" destroy-method="close"/>
+	<bean id="API_MongoDB" class="com.themodernway.server.mongodb.support.spring.MongoDBDescriptor" destroy-method="close" />
 	
 	<bean id="API_HikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="poolName" value="API_SpringHikariCP" />
@@ -105,8 +105,8 @@
 	<bean id="ScriptingProvider" class="com.themodernway.server.core.scripting.ScriptingProvider" destroy-method="close">
 		<constructor-arg>
 			<list>
-				<bean class="com.themodernway.server.core.scripting.GroovyScriptingProperties"/>
-				<bean class="com.themodernway.server.core.scripting.JavaScriptScriptingProperties"/>
+				<bean class="com.themodernway.server.core.scripting.GroovyScriptingProperties" />
+				<bean class="com.themodernway.server.core.scripting.JavaScriptScriptingProperties" />
 			</list>
 		</constructor-arg>
 	</bean>
@@ -133,22 +133,20 @@
 	</bean>
 	
 	<bean id="HeaderInjectorFilterContextCustomizer" class="com.themodernway.server.core.support.spring.HeaderInjectorFilterContextCustomizer">
-		<constructor-arg value="ContentGetFilter" />
-		<constructor-arg value="/content/*" />
+		<constructor-arg value="SecurityFilter" />
+		<constructor-arg value="/*" />
 		<constructor-arg>
 			<list>
-				<bean class="com.themodernway.server.core.servlet.filter.StrictTransportHeaderInjector"/>
-				<bean class="com.themodernway.server.core.servlet.filter.XContentTypeProtectionHeaderInjector"/>
-				<bean class="com.themodernway.server.core.servlet.filter.XFrameOptionsHeaderInjector"/>
-				<bean class="com.themodernway.server.core.servlet.filter.XSSProtectionHeaderInjector"/>
+				<bean class="com.themodernway.server.core.servlet.filter.StrictTransportHeaderInjector" />
+				<bean class="com.themodernway.server.core.servlet.filter.XContentTypeProtectionHeaderInjector" />
+				<bean class="com.themodernway.server.core.servlet.filter.XFrameOptionsHeaderInjector" />
+				<bean class="com.themodernway.server.core.servlet.filter.XSSProtectionHeaderInjector" />
 			</list>
 		</constructor-arg>
 	</bean>
-
-	<context:component-scan base-package="com.themodernway.api.services"/>
 	
-	<context:component-scan base-package="com.themodernway.api.server.rest"/>
-	
-	<context:annotation-config/>
+	<context:component-scan base-package="com.themodernway.api.services" />
+		
+	<context:annotation-config />
 		
 </beans>
